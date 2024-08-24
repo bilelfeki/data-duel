@@ -1,4 +1,4 @@
-package data_dual.benchmark_no_sql;
+package data.dual.benchmark.nosql;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
