@@ -1,0 +1,14 @@
+services:
+  mongodb_container:
+    image: mongo:4.4
+    ports:
+      - 27017:27017
+
+  postgres:
+    image: postgres:latest
+    environment:
+      - POSTGRES_USER=benchmark
+      - POSTGRES_PASSWORD=benchmark
+      - POSTGRES_DB=benchmark
+    ports:
+      - 5432:5432
