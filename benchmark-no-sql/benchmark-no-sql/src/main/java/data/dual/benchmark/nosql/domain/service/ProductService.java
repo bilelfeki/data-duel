@@ -1,8 +1,7 @@
-package data_dual.benchmark_sql.domain.service;
+package data.dual.benchmark.nosql.domain.service;
 
-import data_dual.benchmark_sql.domain.model.Product;
-import data_dual.benchmark_sql.infrastructure.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import data.dual.benchmark.nosql.domain.model.Product;
+import data.dual.benchmark.nosql.infrastructure.ProductRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

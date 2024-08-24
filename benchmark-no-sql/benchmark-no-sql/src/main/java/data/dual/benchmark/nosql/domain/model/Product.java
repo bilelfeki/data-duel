@@ -1,10 +1,14 @@
-package data_dual.benchmark_no_sql.domain.model;
+package data.dual.benchmark.nosql.domain.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Document(collection = "products")
 public class Product {
     @Id
