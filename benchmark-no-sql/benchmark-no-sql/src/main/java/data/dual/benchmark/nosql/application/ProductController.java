@@ -1,7 +1,7 @@
-package data_dual.benchmark_no_sql.application;
+package data.dual.benchmark.nosql.application;
 
-import data_dual.benchmark_no_sql.domain.model.Product;
-import data_dual.benchmark_no_sql.domain.service.ProductService;
+import data.dual.benchmark.nosql.domain.service.ProductService;
+import data.dual.benchmark.nosql.domain.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

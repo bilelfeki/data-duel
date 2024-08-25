@@ -1,4 +1,4 @@
-package data_dual.benchmark_no_sql;
+package data.dual.benchmark.nosql;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

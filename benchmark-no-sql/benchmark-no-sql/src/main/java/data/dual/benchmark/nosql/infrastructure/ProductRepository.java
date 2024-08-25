@@ -1,6 +1,6 @@
-package data_dual.benchmark_no_sql.infrastructure;
+package data.dual.benchmark.nosql.infrastructure;
 
-import data_dual.benchmark_no_sql.domain.model.Product;
+import data.dual.benchmark.nosql.domain.model.Product;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
