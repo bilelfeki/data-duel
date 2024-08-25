@@ -2,6 +2,7 @@ package data.dual.benchmark.nosql.application;
 
 import data.dual.benchmark.nosql.domain.service.ProductService;
 import data.dual.benchmark.nosql.domain.model.Product;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,9 +14,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/products")
+@AllArgsConstructor
 public class ProductController {
 
-    @Autowired
     private ProductService productService;
 
     @GetMapping("/search")
