@@ -15,7 +15,7 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public List<Product> searchProductsByCategory(String category) {
-        return productRepository.findByCategory(category);
+    public List<Product> searchProducts(String searchTerm) {
+        return productRepository.findByCategoryOrNameOrDescriptionOrPrice(searchTerm);
     }
 }
