@@ -30,7 +30,7 @@ public class DatabaseInitializer implements CommandLineRunner {
         for (int i = 0; i < maxSize; i++) {
             String name = faker.commerce().productName();
             String description = faker.lorem().sentence();
-            double price = Double.parseDouble(faker.commerce().price());
+            Double price = Double.parseDouble(faker.commerce().price().replace(",","."));
             String category = faker.commerce().department();
             int stock = faker.number().numberBetween(0, 100);
 
