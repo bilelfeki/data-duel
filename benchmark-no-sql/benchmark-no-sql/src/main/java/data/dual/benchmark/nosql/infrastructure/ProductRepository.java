@@ -1,5 +1,6 @@
 package data.dual.benchmark.nosql.infrastructure;
 
+import data.dual.benchmark.nosql.application.SearchRequest;
 import data.dual.benchmark.nosql.domain.model.Product;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
