@@ -1,37 +1,39 @@
-package data.dual.benchmark.nosql.infrastructure.config;
+package data_dual.benchmark_sql.infrastructure.config.implementation;
 
 import com.github.javafaker.Faker;
-import data.dual.benchmark.nosql.domain.model.Product;
-import data.dual.benchmark.nosql.infrastructure.ProductRepository;
+import data_dual.benchmark_sql.domain.model.Product;
+import data_dual.benchmark_sql.infrastructure.ProductRepository;
+import data_dual.benchmark_sql.infrastructure.config.OnDatabaseInit;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
 
 @Slf4j
 @Component
-public class DatabaseInitializer implements CommandLineRunner {
+@Qualifier("builder")
+public class DatabaseBuilderInitializer implements OnDatabaseInit {
 
     @Value("${database.max-size}")
     private int maxSize;
 
     private final ProductRepository productRepository;
 
-    public DatabaseInitializer(ProductRepository productRepository) {
+    public DatabaseBuilderInitializer(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
 
-    @Override
-   public void run(String... args) {
+    public void run() {
         productRepository.deleteAll();
 
         Faker faker = new Faker();
-
         for (int i = 0; i < maxSize; i++) {
             String name = faker.commerce().productName();
             String description = faker.lorem().sentence();
-            double price = Double.parseDouble(faker.commerce().price().replace(",","."));
+            Double price = Double.parseDouble(faker.commerce().price().replace(",","."));
             String category = faker.commerce().department();
+
             int stock = faker.number().numberBetween(0, 100);
 
             Product product = Product.builder()
@@ -45,5 +47,5 @@ public class DatabaseInitializer implements CommandLineRunner {
         }
 
         log.info("Database initialized with random products");
-   }
+    }
 }

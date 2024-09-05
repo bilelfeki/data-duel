@@ -20,7 +20,9 @@ public class Product {
     private Double price;
     private Integer stock;
     private String category;
-
+    private String fedi;
+    private String aldaind;
+    private String firstName;
     public Product() {
     }
 }
