@@ -1,10 +1,15 @@
 package data_dual.benchmark_sql.util;
 
+import com.github.javafaker.Faker;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -54,18 +59,6 @@ class ClassHandlerTest {
         assertEquals("setName", setterNames.get(0));
     }
 
-    @Test
-    void testCreateAnInstanceWithClassName() {
-        Class<?> clazz = classHandler.createAnInstanceWithCLassName("data_dual.benchmark_sql.util.ClassHandlerTest$SampleClass");
-        assertNotNull(clazz);
-        assertEquals(SampleClass.class, clazz);
-    }
-
-    @Test
-    void testCreateAnInstanceWithClassName_ClassNotFound() {
-        Class<?> clazz = classHandler.createAnInstanceWithCLassName("non.existent.ClassName");
-        assertNull(clazz);
-    }
 
     static class SampleClass {
         private String name;

@@ -2,6 +2,7 @@ package data_dual.benchmark_sql.util;
 
 import com.github.javafaker.Faker;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.InvocationTargetException;
@@ -11,6 +12,7 @@ import java.util.stream.Stream;
 
 @Service
 @NoArgsConstructor
+@Slf4j
 public class ClassHandler<T> {
     public Class<?> getReturnTypeClassOfMethod(Method method) {
         return method.getReturnType();
@@ -42,25 +44,6 @@ public class ClassHandler<T> {
     public List<Method> extractSetterMethod(List<Method> methods) {
         return methods.stream().filter(methodName -> methodName.getName().startsWith("set")).toList();
     }
-
-    Class<?> createAnInstanceWithCLassName(String className) {
-        try {
-            return Class.forName(className);
-        } catch (ClassNotFoundException e) {
-            return null;
-        }
-    }
-    void invokeMethodFromInstance(Class<T> objectInstance,Method method,Object params){
-
-    }
-    T createInstanceForClass(Class<?> tClass){
-        try {
-            return (T) tClass.getDeclaredConstructor().newInstance();
-        } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-            return null;
-        }
-    }
-
     public String generateRandomFieldFromFaker(String value) {
         Faker faker = new Faker();
         List<Method> filteredMethods;
@@ -87,12 +70,14 @@ public class ClassHandler<T> {
 
                 for (Method submethod : subMethods) {
                     if(value.equalsIgnoreCase(submethod.getName())){
-                        System.out.println("done ...");
-                        return submethod.invoke(dynamicObjectInstance).toString();
+                        log.info("done ...");
+                        log.info(value +" was retrieved");
+                        return submethod.invoke(dynamicObjectInstance)==null ? "":
+                                String.valueOf(submethod.invoke(dynamicObjectInstance));
                     }
                 }
             } catch (IllegalAccessException | InvocationTargetException | IllegalArgumentException e) {
-                ;
+                //
             }
         }
         return "";
