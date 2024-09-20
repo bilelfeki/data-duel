@@ -1,8 +1,32 @@
 services:
+  sql-bench:
+    container_name: sql-bench
+    build:
+      context: ./benchmark-sql/benchmark-sql
+      dockerfile: Dockerfile
+    image: sql-bench
+    ports:
+      - 8080:8081
+    networks:
+      - benchmark-network
+
+  no-sql-bench:
+    container_name: no-sql-bench
+    build:
+      context: ./benchmark-no-sql/benchmark-no-sql
+      dockerfile: Dockerfile
+    image: no-sql-bench
+    ports:
+      - 8082:8080
+    networks:
+      - benchmark-network
+
   mongodb_container_2:
     image: mongo:4.4
     ports:
       - 27017:27017
+    networks:
+      - benchmark-network
 
   postgres:
     image: postgres:latest
@@ -12,3 +36,9 @@ services:
       - POSTGRES_DB=benchmark
     ports:
       - 5432:5432
+    networks:
+      - benchmark-network
+
+networks:
+  benchmark-network:
+    driver: bridge
